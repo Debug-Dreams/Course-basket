@@ -30,10 +30,13 @@ courses = [
 
 def home(request):
 
+    
+    return render(request, 'home/index.html')
+
+def about(request):
+    
     context = {
         'courses': Course.objects.all()
     }
-    return render(request, 'home/index.html',context)
 
-def about(request):
-    return render(request, 'home/about.html' )
+    return render(request, 'home/about.html', context )
