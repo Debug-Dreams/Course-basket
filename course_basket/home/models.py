@@ -12,7 +12,9 @@ from django.contrib.auth.models import User
 class Course(models.Model):
     id = models.CharField(max_length=15, primary_key=True)
     name = models.TextField()
-    ltpc = models.CharField(max_length=20)
+    ltpc = models.CharField(default = "NONE",max_length=20)
+    credits = models.IntegerField(default=0)
+    # credits = models.IntField(default = 0)
     # semester = models.CharField(max_length=5)
     sem1 = models.CharField(default="NULL", max_length=5)
     sem2 = models.CharField(default="NULL", max_length=5)

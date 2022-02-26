@@ -1,4 +1,4 @@
-from .home.models import Course
+from home import models as model
 import pandas as pd
 from django.core.management.base import BaseCommand
 from django.conf import settings
@@ -15,7 +15,7 @@ class Command(BaseCommand):
         for sheet in sheet_names:
             dataset = pd.read_excel(xls, sheet)
             for i in range(len(dataset)):
-                courses.append(Course(
+                courses.append(model.Course(
                     id=dataset.iloc[i, 0],
                     name=dataset.iloc[i, 1],
                     ltpc=dataset.iloc[i, 2],
@@ -31,4 +31,4 @@ class Command(BaseCommand):
                 )
                 )
 
-        Course.objects.bulk_create(courses)
+        model.Course.objects.bulk_create(courses)
