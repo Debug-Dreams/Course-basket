@@ -371,14 +371,3 @@
 </html>
 
 <!-- =============================================================== -->
-{% block content %}
-
-
-       <h1>This is the landing Page</h1>
-        {% for course in courses %}
-            <h1>{{ course.id }}</h1>
-            <h2>{{ course.name }}</h2>
-            <h3> Open For: {{ course.branch }} Branch</h3>
-        {% endfor %}
-
-{% endblock content %}
