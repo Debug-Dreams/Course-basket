@@ -609,7 +609,7 @@ pre code {
   position: relative;
   width: 100%;
   padding-right: 0.75rem;
-  padding-left: 0.75rem;
+  padding-left: 100px;
 }
 
 .col {
@@ -1492,7 +1492,9 @@ pre code {
 .table td {
   padding: 0.75rem;
   vertical-align: top;
-  border-top: 1px solid #e3e6f0;
+  border: 1px solid #009cea;
+  background: #e0ecf8;
+    color: black;
 }
 
 .table thead th {
@@ -1515,7 +1517,9 @@ pre code {
 
 .table-bordered th,
 .table-bordered td {
-  border: 1px solid #e3e6f0;
+  border: 1px solid #009cea;
+  background: #e0ecf8;
+    color: black;
 }
 
 .table-bordered thead th,
@@ -1732,8 +1736,8 @@ pre code {
 
 .table .thead-dark th {
   color: #fff;
-  background-color: #5a5c69;
-  border-color: #6c6e7e;
+  background-color: #009cea;
+  border-color: #009cea;
 }
 
 .table .thead-light th {
