@@ -1,0 +1,232 @@
+html {
+  box-sizing: border-box;
+  background: #494eee;
+}
+
+*,
+*:before,
+*:after {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Roboto", sans-serif;
+  font-size: 15px;
+
+  > * {
+    margin: 0.5rem;
+  }
+}
+
+.todo-app {
+  display: grid;
+  grid-template-rows: 60px 1fr 45px;
+  grid-column: 2;
+  grid-row: 2;
+  background: white;
+  overflow: auto;
+  border-radius: 7px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+  /* Because scrollbar is usually between 14-18px. */
+}
+
+.todo-menu-1 {
+  display: grid;
+  grid-template-columns: 50px 1fr;
+  grid-template-rows: 60px;
+  align-items: stretch;
+  box-shadow: 0 -1px 6px rgba(0, 0, 0, 0.19);
+  border-bottom: 1px solid #e6e6e6;
+}
+
+.add-todo-text-input {
+  outline: none;
+  border: none;
+  border-bottom: 1px solid #e6e6e6;
+}
+
+::-webkit-input-placeholder {
+  color: #e6e6e6;
+  font-style: italic;
+}
+
+:-ms-input-placeholder {
+  color: #e6e6e6;
+  font-style: italic;
+}
+
+::-ms-input-placeholder {
+  color: #e6e6e6;
+  font-style: italic;
+}
+
+::placeholder {
+  color: #e6e6e6;
+  font-style: italic;
+}
+
+:-moz-placeholder,
+::-moz-placeholder {
+  opacity: 1;
+}
+
+.toggle-all,
+.delete-button,
+.delete-completed-button,
+.menu-2-button {
+  background: none;
+  border: none;
+  outline: none;
+}
+
+.toggle-all {
+  color: #e6e6e6;
+  justify-self: stretch;
+  text-align: center;
+}
+
+.toggle-all-checked {
+  color: #4d4d4d;
+}
+
+.rotate {
+  display: inline-block;
+  font-size: 20px;
+  transform: rotate(90deg);
+  /* Prevent rotate class from being clicked so that toggle-all button can be clicked instead. */
+  pointer-events: none;
+}
+
+.todo-menu-2 {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  color: #777;
+  background: #f4f5f6;
+  font-size: 14px;
+  font-weight: 300;
+}
+
+.todo-menu-2 .todos-left {
+  justify-self: start;
+  padding-left: 20px;
+}
+
+.todo-menu-2 .todo-menu-2-buttons {
+  justify-self: center;
+  display: -ms-grid;
+  display: grid;
+  grid-template-columns: auto auto auto;
+  grid-gap: 3px;
+}
+
+.todo-menu-2 .delete-completed-button,
+.todo-menu-2 .menu-2-button,
+.todo-menu-2 .todos-left {
+  font-family: inherit;
+  color: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+}
+
+.todo-menu-2 .menu-2-button {
+  padding: 2px 8px;
+  border: 1px solid rgba(137, 103, 208, 0);
+  border-radius: 3px;
+}
+
+.todo-menu-2 .menu-2-button:hover {
+  border: 1px solid rgba(137, 103, 208, 0.5);
+}
+
+.active {
+  border: 1px solid rgba(137, 103, 208, 1) !important;
+}
+
+.todo-menu-2 .delete-completed-button {
+  justify-self: end;
+  padding-right: 20px;
+}
+
+.todo-menu-2 .delete-completed-button:hover {
+  text-decoration: underline;
+}
+
+.todos {
+  display: -ms-grid;
+  display: grid;
+  grid-auto-columns: 1fr;
+  grid-auto-rows: max-content;
+  list-style-type: none;
+  overflow: auto;
+}
+
+.todos .todo {
+  display: grid;
+  grid-template-columns: 50px 1fr 50px;
+  border-bottom: 1px solid #ededed;
+  align-items: center;
+  overflow-wrap: break-word;
+  /* word-wrap is renamed to overflow-wrap but Edge still uses word-wrap */
+  word-wrap: break-word;
+}
+
+/* checkbox centering */
+.todos .todo .pretty {
+  justify-self: center;
+  transform: scale(1.4);
+  margin: 0;
+}
+
+.pretty .state label {
+  text-indent: 0;
+}
+
+.pretty .state i {
+  transform: rotate(-5deg);
+  color: #5dc2af;
+}
+
+.add-todo-text-input,
+.todo-text {
+  font-size: 1rem;
+  color: #4d4d4d;
+}
+
+.todo-text {
+  padding-top: 13px;
+  padding-bottom: 13px;
+}
+
+.todo-text:focus {
+  outline: none;
+}
+
+.todo-checked-text {
+  color: #d9d9dd;
+  text-decoration: line-through;
+}
+
+.todo-checked-text:focus {
+  color: #4d4d4d;
+  text-decoration: none;
+}
+
+.delete-button {
+  font-size: 28px;
+  color: #df8383;
+  justify-self: end;
+  visibility: hidden;
+}
+
+.todos .todo:hover .delete-button {
+  visibility: visible;
+}
+
+.delete-button:hover {
+  color: #f14a5d;
+  cursor: pointer;
+}

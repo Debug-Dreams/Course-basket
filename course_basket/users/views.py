@@ -52,21 +52,30 @@ def discussion(request):
     return render(request, 'users/discussion-forum.html')
 
 @login_required
+def todo(request):
+    return render(request, 'users/todo.html')
+
+@login_required
 def dashboard(request):
 
     user_courses_completed = request.user.profile.completed_courses.all()
     user_courses_current = request.user.profile.current_courses.all()
     user_courses_sem = get_user_course(request.user)
     user_credits = request.user.profile.total_credits
+<<<<<<< HEAD
     basket_comp_msg = check_basket(request)
     
     
+=======
+
+
+>>>>>>> dd2b512 (todo-list-added)
     if request.method == 'POST':
 
         if  'Add' in request.POST:
             to_add = request.POST.get("Add")
             # print("adding")
-            
+
             do_task(request,to_add, "Submit")
             do_task(request, to_add, "update_tot_credits")
             user_courses_sem = update_visible_courses(request)
@@ -79,8 +88,12 @@ def dashboard(request):
             do_task(request,to_drop, "drop")
             do_task(request, to_drop, "update_tot_credits")
             user_courses_sem = update_visible_courses(request)
+<<<<<<< HEAD
             basket_comp_msg = check_basket(request)
         
+=======
+
+>>>>>>> dd2b512 (todo-list-added)
         if  'course_by_sem' in request.POST:
             sem = request.POST.get("course_by_sem","")
             # courses_for_sem = get_user_course(user)

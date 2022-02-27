@@ -31,6 +31,7 @@ urlpatterns = [
     path('dashboard/', user_views.dashboard, name = 'dashboard'),
     path('', include('home.urls')),
     path('discussion-forum/', user_views.discussion, name = 'discussion_forum'),
+    path('todo/', user_views.todo, name = 'todo'),
 
 ]
 
