@@ -5,7 +5,7 @@
 <form method="POST">
     {% csrf_token %}
     <label for="course_by_sem">Choose the semester:</label>
-    <select id="course_by_sem" name="course_by_sem" size="3">
+    <select class ="form-select form-select-lg mb-3" id="course_by_sem" name="course_by_sem" size="3">
 
         {% if current_sem == "1st" %}
         <option value="1st">1st Semester</option>
