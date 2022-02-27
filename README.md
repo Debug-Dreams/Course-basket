@@ -7,6 +7,15 @@ interests [will recommend HSS courses that count towards satisfying minor in man
 
 Along with this, it provides space to plan your courses and a discussion forum to ask seniors for advice :)
 
+# HOW TO RUN THE PROJECT
+To run the Django project follow these steps:-
+
+-Go to the directory which contains the manage.py file.
+-Start virtual environment
+-Install required libraries like django-import-export and others
+-Open the command prompt/terminal and type this command python manage.py runserver
+-It will run your Django project in localhost:8000
+
 The screenshots of the web-app are as follows-
 # Landing page
 ![image](https://user-images.githubusercontent.com/75558322/155890336-034cef31-a28f-44e3-a00f-622bbd39f765.png)
