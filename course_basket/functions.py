@@ -238,6 +238,7 @@ def do_task(request,course_id, task):
     elif task == "drop":
         current_user.profile.current_courses.remove(course)
     elif task == "Submit":   
+        
         current_user.profile.current_courses.add(course)
     elif task == "update_tot_credits":
         tot = 0
@@ -246,6 +247,31 @@ def do_task(request,course_id, task):
         for i in current_user.profile.current_courses.all():
             tot = tot + i.credits
         current_user.profile.total_credits = tot
+
+def do_task_all(request,course_id, task):
+    # course_id = request.GET.get('course_id')
+    course = Course.objects.get(id=course_id)
+    current_user = request.user
+    # if task == "Apply":
+    #     apply_on_project(request, project)
+    # elif task == "Withdraw":
+    #     withdraw_from_project(request,project)
+    # elif task == "Leave":
+    #     leave_project(request, project)
+    if task == "Add":
+        current_user.profile.completed_courses.add(course)
+    elif task == "drop":
+        current_user.profile.completed_courses.remove(course)
+    elif task == "Submit":   
+        current_user.profile.completed_courses.add(course)
+    elif task == "update_tot_credits":
+        tot = 0
+        for i in current_user.profile.completed_courses.all():
+            tot = tot + i.credits
+        for i in current_user.profile.current_courses.all():
+            tot = tot + i.credits
+        current_user.profile.total_credits = tot
+        # current_user.profile.total_credits.save()
 
 def update_visible_courses(request):
     current_user = request.user
@@ -299,26 +325,72 @@ def update_visible_courses(request):
         compulsary = compulsary.exclude(id = course.id)
         elective = elective.exclude(id = course.id)
 
-    
-    # for course in user_courses_completed:
-    #     print(course)
-    #     for type in user_courses_sem:
-    #         print(type)
-    #         type = type.exclude(id = course.id)
-    #         print(type)
+    return [compulsary, elective, ic, sci_b1, sci_b2, sci_b3, hss, dc, fe, mtp]
 
-    
-    
-    # for course in user_courses_current:
-    #     # offered = all_project_list.exclude(id = course.id)
-    #     # print(course)
-    #     for type in user_courses_sem:
-    #         # print("before: ",type)
-    #         type = type.exclude(id = course.id)
-            # print("after: ",type)
+def get_select_sem_course(request,sem):
+    # all_project_list = Course.objects.all()
 
-    # return[ic, sci_b1, sci_b2, sci_b3, hss, dc, fe, mtp]
-    # return user_courses_sem
+    # sem = user.profile.sem
+    sem_col_course = return_sem(sem)
+
+    finished_course = request.user.profile.completed_courses.all()
+
+    # offered = finished_course(**{sem_col_course : "NULL"})
+    ic = finished_course.exclude(**{sem_col_course : "NULL"}).filter(type = "IC Compulsory")
+    sci_b1 = finished_course.exclude(**{sem_col_course : "NULL"}).filter(type = "Science Basket 1")
+    sci_b2 = finished_course.exclude(**{sem_col_course : "NULL"}).filter(type = "Science Basket 2")
+    sci_b3 = finished_course.exclude(**{sem_col_course : "NULL"}).filter(type = "Science Basket 3")
+    hss = finished_course.exclude(**{sem_col_course : "NULL"}).filter(type = "HSS")
+    dc = finished_course.exclude(**{sem_col_course : "NULL"}).filter(type = "DE")
+    fe = finished_course.exclude(**{sem_col_course : "NULL"}).filter(type = "FE")
+    mtp = finished_course.exclude(**{sem_col_course : "NULL"}).filter(type = "")
+
+
+    compulsary = finished_course.filter(**{sem_col_course : "C"})
+    elective = finished_course.filter(**{sem_col_course : "E"})
+
+    return [compulsary, elective, ic, sci_b1, sci_b2, sci_b3, hss, dc, fe, mtp]
+
+def update_visible_courses_prev(request,sem):
+    current_user = request.user
+    all_project_list = Course.objects.all()
+
+    # user_courses_sem = get_user_course(request.user)
+    # print(user_courses_sem)
+
+    user_courses_completed = current_user.profile.completed_courses.all()
+    # user_courses_current = current_user.profile.current_courses.all()
+
+    # # sem = user.profile.sem
+    # sem = request.user.profile.sem
+
+    sem_col_course = return_sem(sem)
+    offered = all_project_list.exclude(**{sem_col_course : "NULL"})
+    ic = all_project_list.exclude(**{sem_col_course : "NULL"}).filter(type = "IC Compulsory")
+    sci_b1 = all_project_list.exclude(**{sem_col_course : "NULL"}).filter(type = "Science Basket 1")
+    sci_b2 = all_project_list.exclude(**{sem_col_course : "NULL"}).filter(type = "Science Basket 2")
+    sci_b3 = all_project_list.exclude(**{sem_col_course : "NULL"}).filter(type = "Science Basket 3")
+    hss = all_project_list.exclude(**{sem_col_course : "NULL"}).filter(type = "HSS")
+    dc = all_project_list.exclude(**{sem_col_course : "NULL"}).filter(type = "DE")
+    fe = all_project_list.exclude(**{sem_col_course : "NULL"}).filter(type = "FE")
+    mtp = all_project_list.exclude(**{sem_col_course : "NULL"}).filter(type = "")
+
+    compulsary = offered.filter(**{sem_col_course : "C"})
+    elective = offered.filter(**{sem_col_course : "E"})
+    new_sem_courses = []
+
+    for course in user_courses_completed:
+        ic = ic.exclude(id = course.id)
+        sci_b1 = sci_b1.exclude(id = course.id)
+        sci_b2 = sci_b2.exclude(id = course.id)
+        sci_b3 = sci_b3.exclude(id = course.id)
+        hss = hss.exclude(id = course.id)
+        dc = dc.exclude(id = course.id)
+        fe = fe.exclude(id = course.id)
+        mtp = mtp.exclude(id = course.id)
+        compulsary = compulsary.exclude(id = course.id)
+        elective = elective.exclude(id = course.id)
+
     return [compulsary, elective, ic, sci_b1, sci_b2, sci_b3, hss, dc, fe, mtp]
 
 
@@ -373,4 +445,39 @@ def check_basket(request):
     #     project.ApplyRequest.remove(request_user)
     #     if task == "Apply":
     #         project.AlreadyApplied.add(request_user)
+
+def update_comp_courses(request,prev_courses):
+    current_user = request.user
+
+    for course in prev_courses:
+        current_user.profile.completed_courses.add(course)
+    current_user.profile.completed_courses.save()
+    
+
+def update_curr_courses(request,new_sem):
+    current_user = request.user
+    sem_col_course = return_sem(new_sem)
+    completed = current_user.profile.completed_courses.objects.all()
+    comp_new_sem = completed.exclude(**{sem_col_course : "NULL"})
+
+    for course in comp_new_sem:
+        current_user.profile.current_courses.add(course)
+    current_user.profile.current_courses.save()
+
+def track_page(request):
+    current_user = request.user
+
+    all_courses = current_user.profile.completed_courses.all()
+
+    ic = all_courses.filter(type = "IC Compulsory")
+    sci_b1 = all_courses.filter(type = "Science Basket 1")
+    sci_b2 = all_courses.filter(type = "Science Basket 2")
+    sci_b3 = all_courses.filter(type = "Science Basket 3")
+    hss = all_courses.filter(type = "HSS")
+    dc = all_courses.filter(type = "DE")
+    fe = all_courses.filter(type = "FE")
+    mtp = all_courses.filter(type = "")
+    
+
+    return [ic, sci_b1, sci_b2, sci_b3, hss, dc, fe, mtp]
 

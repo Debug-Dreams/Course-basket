@@ -1,0 +1,200 @@
+{% extends "home/base.html" %}
+
+{% block b%}
+
+<form method="POST">
+    {% csrf_token %}
+
+    <!-- ADD COURSES TO COURSE LIST -->
+    <div>
+        <h2>Track of all credits</h2>
+        <div>
+            <table class="table table-hover" id="details">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>Domain</th>
+                        <th>Completed Credits</th>
+                        <th>Pending Credits</th>
+                    </tr>
+                </thead>
+                
+                <tr>
+                    <td>
+                        IC Courses
+                    </td>
+                    <td>
+                        {{ ic }}
+                    </td>
+                    <td>
+                        {{ic_left}} 
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        Science Basket 1
+                    </td>
+                    <td>
+                        {{sci_b1}}
+                    </td>
+                    <td>
+                        {{sci_b1_left}}
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        Science Basket 2
+                    </td>
+                    <td>
+                        {{sci_b2}}
+                    </td>
+                    <td>
+                        {{sci_b2_left}}
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        Science Basket 3
+                    </td>
+                    <td>
+                        {{sci_b3}}
+                    </td>
+                    <td>
+                        {{sci_b3_left}}
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        HSS Courses
+                    </td>
+                    <td>
+                        {{hss}}
+                    </td>
+                    <td>
+                        {{hss_left}}
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        Discipline Elective
+                    </td>
+                    <td>
+                        {{dc}}
+                    </td>
+                    <td>
+                        {{dc_left}}
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        Free Elective
+                    </td>
+                    <td>
+                        {{fe}}
+                    </td>
+                    <td>
+                        {{fe_left}}
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        MTP+ISTP
+                    </td>
+                    <td>
+                        {{mtp}}
+                    </td>
+                    <td>
+                        {{mtp_left}}
+                    </td>
+                </tr>
+
+                
+            </table>
+
+        </div>
+    </div>
+</form>
+
+<form method="POST">
+    {% csrf_token %}
+    <div>
+        <h2>All Courses Done Till Now</h2>
+
+        <div>
+            {% for type in all_courses %}
+            {% with index=forloop.counter0 %}
+            <!-- <h1>{{type.first.type}}</h1> -->
+            
+            <h1>
+                {% if index == 0 %}
+                Compulsary Courses
+                {% elif index == 1 %}
+                Electives
+                {% elif index == 2 %}
+                IC Courses
+                {% elif index == 3 %}
+                
+                Science Basket 1
+                <br> <h4>{{basket_message.0}}</h4>
+
+                {% elif index == 4 %}
+                Science Basket 2
+                <br> <h4>{{basket_message.1}}</h4>
+                
+                {% elif index == 5 %}
+                Science Basket 3
+                <br> <h4>{{basket_message.2}}</h4>
+                {% elif index == 6 %}
+                HSS
+                {% elif index == 7 %}
+                Discipline Elective
+
+                {% elif index == 8 %}
+                Free Elective
+
+                {% elif index == 9 %}
+                MTP + ISTP
+                {% endif %}
+            </h1>
+
+            <table class="table table-hover" id="details">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>Course_Id</th>
+                        <th>Course_Name</th>
+                        <th>L-T-P-C</th>
+                        <th>Credits</th>
+                        
+                    </tr>
+                </thead>
+
+
+                {% for course in type %}
+                <tr>
+                    <td>{{course.id}}</td>
+                    <td>{{course.name}}</td>
+                    <td>{{course.ltpc}}</td>
+                    <td>{{course.credits}}</td>
+                    
+                </tr>
+
+                {% endfor %}
+
+            </table>
+
+            <!-- <button class="btnadd" type="submit" name="Add" id="add" value="Add">ADD</button> -->
+            {% endwith %}
+            {% endfor %}
+
+        </div>
+    </div>
+</form>
+
+
+{% endblock%}
