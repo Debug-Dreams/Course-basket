@@ -54,7 +54,7 @@
                   <!-- Sidebar - Brand -->
                   <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
                       <div class="sidebar-brand-icon rotate-n-15">
-                          <i class="fas fa-laugh-wink"></i>
+<!--                          <i class="fas fa-laugh-wink"></i>-->
                       </div>
                       <div class="sidebar-brand-text mx-3">KAMAND-BASKET</div>
                   </a>
@@ -65,7 +65,7 @@
                   <!-- Nav Item - Dashboard -->
                   <li class="nav-item">
                       <a class="nav-link" href="{% url 'landing-page' %}">
-                          <i class="fas fa-fw fa-tachometer-alt"></i>
+                          <i class="fas fa-fw fa-tachometer-alt" style="color: white"></i>
                           <span>HOME</span></a>
                   </li>
 
@@ -80,20 +80,20 @@
                   <!-- Nav Item - Pages Collapse Menu -->
                   <li class="nav-item">
                       <a class="nav-link" href={% url 'dashboard' %}>
-                          <i class="fas fa-fw fa-tachometer-alt"></i>
+                          <i class="fas fa-fw fa-tachometer-alt" style="color: white"></i>
                           <span>Dashboard</span></a>
                   </li>
 
                   <!-- Nav Item - Utilities Collapse Menu -->
                   <li class="nav-item">
                       <a class="nav-link" href="{% url 'about-page' %}">
-                          <i class="fas fa-fw fa-tachometer-alt"></i>
+                          <i class="fas fa-fw fa-tachometer-alt" style="color: white"></i>
                           <span>About</span></a>
                   </li>
 
                   <li class="nav-item">
                       <a class="nav-link" href="{% url 'discussion_forum' %}">
-                          <i class="fas fa-fw fa-tachometer-alt"></i>
+                          <i class="fas fa-fw fa-tachometer-alt" style="color: white"></i>
                           <span>Discussion Forum</span></a>
                   </li>
 
@@ -109,7 +109,7 @@
                   <!-- Nav Item - Charts -->
                   <li class="nav-item">
                       <a class="nav-link" href="{% url 'profile' %}">
-                          <i class="fas fa-fw fa-chart-area"></i>
+                          <i class="fas fa-fw fa-chart-area" style="color: white"></i>
                           <span>Profile</span></a>
                   </li>
 
@@ -337,7 +337,7 @@
                       <div class="container-fluid">
 
                           <!-- Page Heading -->
-                          {% block b %}{% endblock b %}
+                          {% block b %}{% endblock%}
 
                       </div>
                       <!-- /.container-fluid -->
