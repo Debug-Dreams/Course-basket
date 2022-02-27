@@ -1,0 +1,167 @@
+{% extends "home/base.html" %}
+
+{% block b%}
+
+<form method="POST">
+    {% csrf_token %}
+    <label for="course_by_sem">Choose the semester:</label>
+    <select id="course_by_sem" name="course_by_sem" size="3">
+
+        {% if current_sem == "1st" %}
+        <option value="1st">1st Semester</option>
+
+        {% elif current_sem == "2nd" %}
+        <option value="1st">1st Semester</option>
+        <!-- <option value="2nd">2nd Semester</option> -->
+
+        {% elif current_sem == "3rd" %}
+        <option value="1st">1st Semester</option>
+        <option value="2nd">2nd Semester</option>
+        <!-- <option value="3rd">3rd Semester</option> -->
+
+        {% elif current_sem == "4th" %}
+        <option value="1st">1st Semester</option>
+        <option value="2nd">2nd Semester</option>
+        <option value="3rd">3rd Semester</option>
+        <!-- <option value="4th">4th Semester</option> -->
+
+        {% elif current_sem == "5th" %}
+        <option value="1st">1st Semester</option>
+        <option value="2nd">2nd Semester</option>
+        <option value="3rd">3rd Semester</option>
+        <option value="4th">4th Semester</option>
+        <!-- <option value="5th">5th Semester</option> -->
+
+        {% elif current_sem == "6th" %}
+        <option value="1st">1st Semester</option>
+        <option value="2nd">2nd Semester</option>
+        <option value="3rd">3rd Semester</option>
+        <option value="4th">4th Semester</option>
+        <option value="5th">5th Semester</option>
+        <!-- <option value="6th">6th Semester</option> -->
+
+        {% elif current_sem == "7th" %}
+        <option value="1st">1st Semester</option>
+        <option value="2nd">2nd Semester</option>
+        <option value="3rd">3rd Semester</option>
+        <option value="4th">4th Semester</option>
+        <option value="5th">5th Semester</option>
+        <option value="6th">6th Semester</option>
+        <!-- <option value="7th">7th Semester</option> -->
+
+        {% elif current_sem == "8th" %}
+        <option value="1st">1st Semester</option>
+        <option value="2nd">2nd Semester</option>
+        <option value="3rd">3rd Semester</option>
+        <option value="4th">4th Semester</option>
+        <option value="5th">5th Semester</option>
+        <option value="6th">6th Semester</option>
+        <option value="7th">7th Semester</option>
+        <!-- <option value="8th">8th Semester</option> -->
+
+        {% endif %}
+    </select>
+
+    <button type="submit" value="course_by_sem">Search</button>
+</form>
+
+
+
+<form method="POST">
+    {% csrf_token %}
+
+    <!-- ADD COURSES TO COURSE LIST -->
+    <div>
+        <h2>Courses for Given Sem</h2>
+        <div>
+            <table class="table table-hover" id="details">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>Course_Id</th>
+                        <th>Course_Name</th>
+                        <th>L-T-P-C</th>
+                        <th>Credits</th>
+                        <th>Type</th>
+                        <th>Select</th>
+                    </tr>
+                </thead>
+                {% for type in selected_sem_courses %}
+                {% for course in type %}
+                <tr>
+                    <td>
+                        {{course.id}}
+                    </td>
+                    <td>
+                        {{course.name}}
+                    </td>
+                    <td>
+                        {{course.ltpc}}
+                    </td>
+                    <td>
+                        {{course.credits}}
+                    </td>
+                    <td>
+                        {{course.type}}
+                    </td>
+                    <td>
+                        <button class=" btndrop" type="submit" name="drop" id="drop"
+                            value="{{course.id}}">DROP</button>
+                    </td>
+                </tr>
+
+                {% endfor %}
+                {% endfor %}
+            </table>
+
+        </div>
+    </div>
+</form>
+
+<form method="POST">
+    {% csrf_token %}
+
+    <!-- ADD COURSES TO COURSE LIST -->
+    <div>
+        <h2>Add the Courses!</h2>
+        <div>
+            <table class="table table-hover" id="details">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>Course_Id</th>
+                        <th>Course_Name</th>
+                        <th>L-T-P-C</th>
+                        <th>Credits</th>
+                        <th>Type</th>
+                        <th>Select</th>
+                    </tr>
+                </thead>
+
+                {% for type in course_filter_sem %}
+                    {% for course in type %}
+                    <tr>
+                        <td>
+                            {{course.id}}
+                        </td>
+                        <td>
+                            {{course.name}}
+                        </td>
+                        <td>
+                            {{course.ltpc}}
+                        </td>
+                        <td>
+                            {{course.credits}}
+                        </td>
+                        <td>
+                            {{course.type}}
+                        </td>
+                        <td>
+                            <button class=" btnadd" type="submit" name="Add" id="add"
+                                value="{{course.id}}">ADD</button>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                {% endfor %}
+            </table>
+
+
+{% endblock%}

@@ -29,83 +29,6 @@
         </div>
     </div> -->
 
-
-
-
-
-    <div>
-        <br>
-        <h3>Completed Courses</h3>
-        <div>
-            {% for type in completed_courses %}
-            <!-- {% with index=forloop.counter0 %} -->
-            <!-- <h1>{{type.first.type}}</h1>
-          {% for course in type %} -->
-            <div>
-                {{ course.id}}
-                <br />
-                {{course.name}}
-                <br />
-                Credits: {{course.credits}}
-                <br />
-                {{course.type}}
-            </div>
-            <!-- {% endfor %} -->
-            <br />
-            <!-- {% endwith %} -->
-            {% endfor %}
-
-
-            <!--
-      {% for type in completed_courses %}
-
-      <h1>{{type.first.type}}</h1>
-      <!- {% with index=forloop.counter0 %} -->
-            <!-- <h1>{{type.first}}</h1> -->
-            <!-- <h1>
-      {% if index == 0 %}
-            Compulsary Courses
-        {% elif index == 1 %}
-            Electives
-          {% elif index == 2 %}
-            IC Courses
-          {% elif index == 3 %}
-            Science Basket 1
-          {% elif index == 4 %}
-          Science Basket 2
-          {% elif index == 5 %}
-          Science Basket 3
-          {% elif index == 6 %}
-          HSS
-          {% elif index == 7 %}
-          Discipline Elective
-
-          {% elif index == 7 %}
-          Free Elective
-
-          {% elif index == 7 %}
-          MTP + ISTP
-              {% endif %}
-
-            </h1> --
-
-      {% for course in type %}
-      <div>
-        {{ course.id}}
-        <br />
-        {{course.name}}
-        <br />
-        Credits: {{course.credits}}
-        <br />
-        {{course.type}}
-      </div>
-      {% endfor %}
-      <br />
-      <!- {% endwith %} -
-      {% endfor %} -->
-        </div>
-    </div>
-
     <form method="POST">
         {% csrf_token %}
 
@@ -244,12 +167,12 @@
 
     <!-- END CHOSEN COURSES -->
 
-    </form>
+    <!-- </form> -->
 
 
     <!-- FILTER COURSES BY SEMESTER ALL -->
 
-    <form method="POST">
+    <!-- <form method="POST">
         {% csrf_token %}
         <label for="course_by_sem">Choose the semester:</label>
         <select id="course_by_sem" name="course_by_sem" size="3">
@@ -267,7 +190,7 @@
     </form>
 
     {% for type in course_filter_sem %}
-    <!-- {% with index=forloop.counter0 %} -->
+    <!- {% with index=forloop.counter0 %} ->
     <h1>{{type.first.type}}</h1>
     {% for course in type %}
     <div>
@@ -281,12 +204,12 @@
     </div>
     {% endfor %}
     <br />
-    <!-- {% endwith %} -->
+    <!- {% endwith %} ->
     {% endfor %}
 
-    <!-- END FILTER COURSES BY SEMESTER ALL -->
+    <!- END FILTER COURSES BY SEMESTER ALL -->
 
-    <!-- FORM HERE -->
-</div>
+    <!-- FORM HERE ->
+</div> -->
 
 {% endblock b %}

@@ -32,6 +32,9 @@ urlpatterns = [
     path('', include('home.urls')),
     path('discussion-forum/', user_views.discussion, name = 'discussion_forum'),
     path('todo/', user_views.todo, name = 'todo'),
+    path('finishedcourses/', user_views.finished_courses, name = 'finishedcourses'),
+    path('track/', user_views.track, name = 'track')
+    
 
 ]
 
