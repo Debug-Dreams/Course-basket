@@ -321,6 +321,46 @@ def update_visible_courses(request):
     # return user_courses_sem
     return [compulsary, elective, ic, sci_b1, sci_b2, sci_b3, hss, dc, fe, mtp]
 
+
+def check_basket(request):
+    current_user = request.user
+    # all_project_list = Course.objects.all()
+
+    # user_courses_sem = get_user_course(request.user)
+    # print(user_courses_sem)
+
+    user_courses_completed = current_user.profile.completed_courses.all()
+    user_courses_current = current_user.profile.current_courses.all()
+    messages = []
+
+    user_sci_b1_comp = user_courses_completed.filter(type = "Science Basket 1")
+    user_sci_b1_curr = user_courses_current.filter(type = "Science Basket 1")
+
+    user_sci_b2_comp = user_courses_completed.filter(type = "Science Basket 2")
+    user_sci_b2_curr = user_courses_current.filter(type = "Science Basket 2")
+
+    user_sci_b3_comp = user_courses_completed.filter(type = "Science Basket 3")
+    user_sci_b3_curr = user_courses_current.filter(type = "Science Basket 3")
+
+    if user_sci_b1_curr.exists() or user_sci_b1_comp.exists():
+        messages.append("Science Basket 1 completed")
+    else:
+        messages.append("Science Basket 1 not completed")
+
+    if user_sci_b2_curr.exists() or user_sci_b2_comp.exists():
+        messages.append("Science Basket 2 completed")
+    else:
+        messages.append("Science Basket 2 not completed")
+
+    if user_sci_b3_curr.exists() or user_sci_b3_comp.exists():
+        messages.append("Science Basket 3 completed")
+    else:
+        messages.append("Science Basket 3 not completed")
+
+
+    return messages
+
+
         
     # elif task == "Unlike":
     #     current_user.profile.liked_projects.remove(project)

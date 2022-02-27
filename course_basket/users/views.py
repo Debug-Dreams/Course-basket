@@ -58,6 +58,7 @@ def dashboard(request):
     user_courses_current = request.user.profile.current_courses.all()
     user_courses_sem = get_user_course(request.user)
     user_credits = request.user.profile.total_credits
+    basket_comp_msg = check_basket(request)
     
     
     if request.method == 'POST':
@@ -69,6 +70,7 @@ def dashboard(request):
             do_task(request,to_add, "Submit")
             do_task(request, to_add, "update_tot_credits")
             user_courses_sem = update_visible_courses(request)
+            basket_comp_msg = check_basket(request)
             # print(user_courses_current)
             messages.success(request, f'Course added successfully')
 
@@ -77,6 +79,7 @@ def dashboard(request):
             do_task(request,to_drop, "drop")
             do_task(request, to_drop, "update_tot_credits")
             user_courses_sem = update_visible_courses(request)
+            basket_comp_msg = check_basket(request)
         
         if  'course_by_sem' in request.POST:
             sem = request.POST.get("course_by_sem","")
@@ -89,6 +92,7 @@ def dashboard(request):
         courses_for_sem = []
 
     request.user.profile.save()
+    print(basket_comp_msg)
     # print(user_courses_completed)
     # print(user_courses_current)
     context = {
@@ -97,6 +101,7 @@ def dashboard(request):
         'course_filter_sem' : courses_for_sem,
         # 'added_courses' : user_courses_added,
         'current_courses' : user_courses_current,
+        'basket_message':basket_comp_msg,
         'total_credits' : user_credits
     }
     return render(request, 'users/dashboard.html', context)
