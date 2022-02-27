@@ -30,11 +30,9 @@ urlpatterns = [
     path('profile/', user_views.profile, name = 'profile'),
     path('dashboard/', user_views.dashboard, name = 'dashboard'),
     path('', include('home.urls')),
+    path('discussion-forum/', user_views.discussion, name = 'discussion_forum'),
 
-] 
+]
 
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
-
-
-

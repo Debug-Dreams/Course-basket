@@ -18,7 +18,7 @@ def register(request):
 
     else:
         form = UserRegistrationForm()
-    
+
     return render (request, 'users/register.html', {'form':form } )
 
 @login_required
@@ -28,3 +28,7 @@ def profile(request):
 @login_required
 def dashboard(request):
     return render(request, 'users/dashboard.html')
+
+@login_required
+def discussion(request):
+    return render(request, 'users/discussion-forum.html')

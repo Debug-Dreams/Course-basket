@@ -79,7 +79,7 @@
 
                   <!-- Nav Item - Pages Collapse Menu -->
                   <li class="nav-item">
-                      <a class="nav-link" href="index.html">
+                      <a class="nav-link" href={% url 'dashboard' %}>
                           <i class="fas fa-fw fa-tachometer-alt"></i>
                           <span>Dashboard</span></a>
                   </li>
@@ -89,6 +89,12 @@
                       <a class="nav-link" href="{% url 'about-page' %}">
                           <i class="fas fa-fw fa-tachometer-alt"></i>
                           <span>About</span></a>
+                  </li>
+
+                  <li class="nav-item">
+                      <a class="nav-link" href="{% url 'discussion_forum' %}">
+                          <i class="fas fa-fw fa-tachometer-alt"></i>
+                          <span>Discussion Forum</span></a>
                   </li>
 
                   <!-- Divider -->
