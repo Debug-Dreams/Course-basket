@@ -1,6 +1,7 @@
 body {
   font-family: "Open Sans", sans-serif;
   color: #444444;
+  background: #e0ecf8;
 }
 
 a {
@@ -359,7 +360,7 @@ section {
 }
 
 .section-bg {
-  background-color: #f7f8f9;
+  background-color: #e0ecf8;
 }
 
 .section-title {
