@@ -7,16 +7,28 @@ from PIL import Image
 
 # Create your models here.
 
+# SEM_CHOICES = (
+#     ( 'sem1', '1st'),
+#     ( 'sem2', '2nd'),
+#     ('sem3', '3rd'),
+#     ('sem4', '4th'),
+#     ('sem5', '5th'),
+#     ('sem6', '6th'),
+#     ('sem7', '7th'),
+#     ('sem8', '8th')
+# )
+
 SEM_CHOICES = (
-    ( 'sem1', '1st'),
-    ( 'sem2', '2nd'),
-    ('sem3', '3rd'),
-    ('sem4', '4th'),
-    ('sem5', '5th'),
-    ('sem6', '6th'),
-    ('sem7', '7th'),
-    ('sem8', '8th')
+    ( '1st', '1st'),
+    ( '2nd', '2nd'),
+    ('3rd', '3rd'),
+    ('4th', '4th'),
+    ('5th', '5th'),
+    ('6th', '6th'),
+    ('7th', '7th'),
+    ('8th', '8th')
 )
+
 BRANCH_CHOICES = (
     ('CSE', 'CSE'),
     ('DSE', 'DSE'),
