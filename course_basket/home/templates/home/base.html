@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
   <script src="https://your-site-or-cdn.com/fontawesome/v5.15.4/js/all.js" data-auto-a11y="true" ></script>
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="stylesheet" type="text/css" href="{% static 'home/main.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'todo.css' %}">
 
@@ -72,8 +73,14 @@
                   <!-- Nav Item - Dashboard -->
                   <li class="nav-item">
                       <a class="nav-link" href="{% url 'landing-page' %}">
-                          <i class="fas fa-fw fa-tachometer-alt" style="color: white"></i>
+                          <!-- <i class="fas fa-fw fa-tachometer-alt" style="color: white"></i> -->
+                          <i class="fa fa-home"></i>
                           <span>HOME</span></a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="{% url 'profile' %}">
+                          <i class="fa fa-user"></i>
+                          <span>Profile</span></a>
                   </li>
 
                   <!-- Divider -->
@@ -87,7 +94,7 @@
                   <!-- Nav Item - Pages Collapse Menu -->
                   <li class="nav-item">
                       <a class="nav-link" href={% url 'dashboard' %}>
-                          <i class="fa-solid fa-comments"></i>
+                          <i class="fas fa-fw fa-tachometer-alt" style="color: white"></i>
                           <span>Dashboard</span></a>
                   </li>
 
@@ -95,31 +102,18 @@
 
                   <li class="nav-item">
                       <a class="nav-link" href="{% url 'discussion_forum' %}">
-                          <i class="fas fa-fw fa-tachometer-alt" style="color: white"></i>
+                          <i class="fa fa-comment" style="color:white;"></i>
                           <span>Discussion Forum</span></a>
                   </li>
 
                   <li class="nav-item">
                       <a class="nav-link" href={% url 'todo' %}>
-                          <i class="fas fa-fw fa-tachometer-alt" style="color: white"></i>
+                        <i class="fa fa-ruler-triangle" style="color:white;"></i>
                           <span>Planning Area</span></a>
                   </li>
 
                   <!-- Divider -->
-                  <hr class="sidebar-divider">
 
-                  <!-- Heading -->
-
-
-                  <!-- Nav Item - Pages Collapse Menu -->
-
-
-                  <!-- Nav Item - Charts -->
-                  <li class="nav-item">
-                      <a class="nav-link" href="{% url 'profile' %}">
-                          <i class="fas fa-fw fa-chart-area" style="color: white"></i>
-                          <span>Profile</span></a>
-                  </li>
 
 
                   <!-- Divider -->
