@@ -333,3 +333,7 @@ todoList.getLocalStorage();
 view.setMobileHeroRows();
 view.displayTodos();
 view.resizeTodos();
+
+$("#create").click(function() {
+  $(this).before("<textarea></textarea>");
+});
