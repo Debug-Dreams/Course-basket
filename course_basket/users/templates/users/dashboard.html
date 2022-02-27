@@ -4,7 +4,7 @@
 
 
 <div class="content-section">
-  <div class="col-lg-4">
+  <div class="col-lg-4" style="float: contour;">
         <div class="card shadow-sm">
           <div class="card-header bg-transparent text-center">
           <img class="rounded-circle account-img" src="{{ user.profile.image.url }}" />
@@ -34,7 +34,8 @@
 
 
     <div>
-        <h2>Completed Courses</h2>
+        <br>
+        <h3>Completed Courses</h3>
         <div>
             {% for type in completed_courses %}
             <!-- {% with index=forloop.counter0 %} -->
@@ -110,7 +111,7 @@
 
         <!-- ADD COURSES TO COURSE LIST -->
         <div>
-            <h2>Active Courses for Current Sem</h2>
+            <h4>Active Courses for Current Sem</h4>
             <div>
                 <table class="table table-hover" id="details">
                     <thead class="thead-dark">
@@ -158,16 +159,16 @@
     <form method="POST">
         {% csrf_token %}
         <div>
-            <h2>Courses being offerend in current semester</h2>
+            <h3>Courses being offered in current semester</h3>
 
             <div>
                 {% for type in user_sem %}
                 {% with index=forloop.counter0 %}
                 <!-- <h1>{{type.first.type}}</h1> -->
 
-                <h1>
+                <h4>
                     {% if index == 0 %}
-                    Compulsary Courses
+                    Compulsory Courses
                     {% elif index == 1 %}
                     Electives
                     {% elif index == 2 %}
@@ -195,7 +196,7 @@
                     {% elif index == 9 %}
                     MTP + ISTP
                     {% endif %}
-                </h1>
+                </h4>
 
                 <table class="table table-hover" id="details">
                     <thead class="thead-dark">
