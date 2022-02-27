@@ -1,25 +1,276 @@
-{% extends "home/base.html" %}
+{% extends "home/base.html" %} 
 
 
 
 
 
 
-{% block b%}
+{% block b %}
 
 
 
+<div class="content-section">
+  <div class="media">
+    <img
+      class="rounded-circle account-img"
+      src="{{ user.profile.image.url }}"
+    />
+    <div class="media-body">
+      This is the dashboardxcx
+      <h2 class="account-heading">{{ user.username }}</h2>
+      <p class="text-secondary">{{ user.email }}</p>
 
-    <div class="content-section">
-        <div class="media">
-          <img class="rounded-circle account-img" src="{{ user.profile.image.url }}">
-          <div class="media-body">
-              This is the dashboard
-            <h2 class="account-heading">{{ user.username }}</h2>
-            <p class="text-secondary">{{ user.email }}</p>
+      Total Credits : <h3 class="account-heading">{{ user.profile.total_credits }}</h3>
+    </div>
+  </div>
+
+  <div>
+    <h2>Completed Courses</h2>
+    <div>
+        {% for type in completed_courses %}
+          <!-- {% with index=forloop.counter0 %} -->
+          <!-- <h1>{{type.first.type}}</h1>
+          {% for course in type %} -->
+          <div>
+            {{ course.id}}
+            <br />
+            {{course.name}}
+            <br />
+            Credits: {{course.credits}}
+            <br />
+            {{course.type}}
           </div>
-        </div>
-        <!-- FORM HERE -->
-      </div>
+          <!-- {% endfor %} -->
+          <br />
+          <!-- {% endwith %} -->
+          {% endfor %}
 
-{% endblock%}
+
+      
+      <!-- 
+      {% for type in completed_courses %}
+
+      <h1>{{type.first.type}}</h1>
+      <!- {% with index=forloop.counter0 %} -->
+      <!-- <h1>{{type.first}}</h1> -->
+      <!-- <h1>
+      {% if index == 0 %}
+            Compulsary Courses
+        {% elif index == 1 %}
+            Electives 
+          {% elif index == 2 %}
+            IC Courses
+          {% elif index == 3 %}
+            Science Basket 1
+          {% elif index == 4 %}
+          Science Basket 2
+          {% elif index == 5 %}
+          Science Basket 3
+          {% elif index == 6 %}
+          HSS 
+          {% elif index == 7 %}
+          Discipline Elective
+
+          {% elif index == 7 %}
+          Free Elective
+
+          {% elif index == 7 %}
+          MTP + ISTP    
+              {% endif %}
+
+            </h1> --
+
+      {% for course in type %}
+      <div>
+        {{ course.id}}
+        <br />
+        {{course.name}}
+        <br />
+        Credits: {{course.credits}}
+        <br />
+        {{course.type}}
+      </div>
+      {% endfor %}
+      <br />
+      <!- {% endwith %} -
+      {% endfor %} -->
+    </div>
+  </div>
+
+  <form method="POST">
+    {% csrf_token %}
+
+    <!-- ADD COURSES TO COURSE LIST -->
+      <div>
+        <h2>Active Courses for Current Sem</h2>  
+        <div>
+            <table class="table table-hover" id="details">
+                <thead class="thead-dark">
+                <tr>
+                    <th>Course_Id</th>
+                    <th>Course_Name</th>
+                    <th>L-T-P-C</th>
+                    <th>Credits</th>
+                    <th>Type</th>
+                    <th>Select</th>
+                </tr>
+                </thead>
+                {% for course in current_courses %}
+                <tr>
+                    <td>
+                        {{course.id}}
+                    </td>
+                    <td>
+                        {{course.name}}
+                    </td>
+                    <td>
+                        {{course.ltpc}}
+                    </td>
+                    <td>
+                        {{course.credits}}
+                    </td>
+                    <td>
+                        {{course.type}}
+                    </td>
+                    <td>
+                        <button class=" btndrop" type="submit" name="drop" id="drop" value="{{course.id}}">DROP</button>
+                    </td>
+                </tr>
+                
+                    {% endfor %}
+            </table>          
+            
+        </div>
+    </div>
+</form>
+
+      <!-- END ADD COURSES TO COURSE LIST -->
+      <!-- CHOOSE COURSES-->
+      <form method="POST">
+        {% csrf_token %}
+      <div>
+        <h2>Courses being offerend in current semester</h2>
+        
+        <div>
+            {% for type in user_sem %}
+            {% with index=forloop.counter0 %}
+            <!-- <h1>{{type.first.type}}</h1> -->
+            <h1>
+                {% if index == 0 %}
+            Compulsary Courses
+        {% elif index == 1 %}
+            Electives 
+          {% elif index == 2 %}
+            IC Courses
+          {% elif index == 3 %}
+            Science Basket 1
+          {% elif index == 4 %}
+          Science Basket 2
+          {% elif index == 5 %}
+          Science Basket 3
+          {% elif index == 6 %}
+          HSS 
+          {% elif index == 7 %}
+          Discipline Elective
+
+          {% elif index == 8 %}
+          Free Elective
+
+          {% elif index == 9 %}
+          MTP + ISTP    
+              {% endif %}
+        </h1>
+
+                <table class="table table-hover" id="details">
+                    <thead class="thead-dark">
+                    <tr>
+                        <th>Course_Id</th>
+                        <th>Course_Name</th>
+                        <th>L-T-P-C</th>
+                        <th>Credits</th>
+                        <th>Select</th>
+                    </tr>
+                    </thead>
+                    
+
+                    {% for course in type %}
+                        <tr>
+                        <td>{{course.id}}</td>
+                        <td>{{course.name}}</td>
+                        <td>{{course.ltpc}}</td>
+                        <td>{{course.credits}}</td>
+                        <!-- <td>
+                            <input
+                            type="checkbox"
+                            id="select"
+                            name="selected_to_add"
+                            value="{{course.id}}"
+                            />
+                        </td> -->
+                        <td>
+                            <button class="btnadd" type="submit" name="Add" id="add" value="{{course.id}}">ADD</button>
+                        </td>
+                        </tr>
+
+                    {% endfor %}
+
+      </table>
+
+      <!-- <button class="btnadd" type="submit" name="Add" id="add" value="Add">ADD</button> -->
+      {% endwith %}
+      {% endfor %}
+          
+        </div>
+      </div>
+      </form>
+
+      <!-- END CHOSEN COURSES -->
+
+</form>
+
+
+      <!-- FILTER COURSES BY SEMESTER ALL -->
+
+      <form method="POST">
+        {% csrf_token %}
+        <label for="course_by_sem">Choose the semester:</label>
+        <select id="course_by_sem" name="course_by_sem" size="3">
+          <option value="1st">1st Semester</option>
+          <option value="2nd">2nd Semester</option>
+          <option value="3rd">3rd Semester</option>
+          <option value="4th">4th Semester</option>
+          <option value="5th">5th Semester</option>
+          <option value="6th">6th Semester</option>
+          <option value="7th">7th Semester</option>
+          <option value="8th">8th Semester</option>
+        </select>
+
+        <button type="submit" value="course_by_sem">Search</button>
+      </form>
+
+      {% for type in course_filter_sem %}
+      <!-- {% with index=forloop.counter0 %} -->
+      <h1>{{type.first.type}}</h1>
+      {% for course in type %}
+      <div>
+        {{ course.id}}
+        <br />
+        {{course.name}}
+        <br />
+        Credits: {{course.credits}}
+        <br />
+        Course type: {{course.type}}
+      </div>
+      {% endfor %}
+      <br />
+      <!-- {% endwith %} -->
+      {% endfor %}
+
+      <!-- END FILTER COURSES BY SEMESTER ALL -->
+
+      <!-- FORM HERE -->
+    </div>
+
+    
+{% endblock b %}
+    
