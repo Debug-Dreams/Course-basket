@@ -1,6 +1,7 @@
 {% extends "home/base.html" %}
+{% load crispy_forms_tags %}
 
-{% block content %}
+{% block b %}
 
     <div class="content-section">
         <div class="media">
@@ -11,6 +12,23 @@
           </div>
         </div>
         <!-- FORM HERE -->
+
+        <form method="POST" enctype = "multipart/form-data">
+          {% csrf_token %}
+
+          <fieldset class="form-group">
+              <legend>Profile Info</legend>
+
+              {{ u_form|crispy }}
+              {{ p_form|crispy }}
+
+          </fieldset>
+
+          <button type = "submit">Update</button>
+
+      </form>
+      
+      <a href="{% url 'dashboard' %}">dashboard</a>
       </div>
 
-{% endblock content %}
+{% endblock b %}
